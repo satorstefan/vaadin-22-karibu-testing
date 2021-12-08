@@ -3,6 +3,7 @@ dependencies:
   '@polymer/iron-list': 3.1.0
   '@polymer/polymer': 3.2.0
   '@vaadin/flow-frontend': link:target/flow-frontend
+  '@vaadin/form': link:target/flow-frontend/form
   '@vaadin/router': 1.7.4
   '@vaadin/vaadin-accordion': 21.0.5
   '@vaadin/vaadin-app-layout': 21.0.5
@@ -54,7 +55,6 @@ dependencies:
 devDependencies:
   '@types/validator': 13.1.0
   '@vaadin/application-theme-plugin': link:target/plugins/application-theme-plugin
-  '@vaadin/build-status-plugin': link:target/plugins/build-status-plugin
   '@vaadin/stats-plugin': link:target/plugins/stats-plugin
   '@vaadin/theme-live-reload-plugin': link:target/plugins/theme-live-reload-plugin
   '@vaadin/theme-loader': link:target/plugins/theme-loader
@@ -4391,7 +4391,7 @@ packages:
       integrity: sha512-lhd/wF+Lk98HZoTCtlVraHtfh5XYijIjalXck7saUtuanSDyLMxnHhSXEDJqHxD7msR8D0uCmqlkwjCV8xvwHw==
   /faye-websocket/0.10.0:
     dependencies:
-      websocket-driver: 0.7.4
+      websocket-driver: 0.6.5
     dev: true
     engines:
       node: '>=0.4.0'
@@ -8460,8 +8460,8 @@ specifiers:
   '@polymer/polymer': 3.2.0
   '@types/validator': 13.1.0
   '@vaadin/application-theme-plugin': ./target/plugins/application-theme-plugin
-  '@vaadin/build-status-plugin': ./target/plugins/build-status-plugin
   '@vaadin/flow-frontend': ./target/flow-frontend
+  '@vaadin/form': ./target/flow-frontend/form
   '@vaadin/router': 1.7.4
   '@vaadin/stats-plugin': ./target/plugins/stats-plugin
   '@vaadin/theme-live-reload-plugin': ./target/plugins/theme-live-reload-plugin
