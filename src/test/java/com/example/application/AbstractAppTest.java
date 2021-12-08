@@ -48,6 +48,10 @@ public abstract class AbstractAppTest {
         sc.setAuthentication(auth);
     }
 
+    protected void logout() {
+        SecurityContextHolder.getContext().setAuthentication(null);
+    }
+
     @BeforeEach
     public void setup() {
         final Function0<UI> uiFactory = UI::new;
@@ -58,5 +62,10 @@ public abstract class AbstractAppTest {
     @AfterEach
     public void tearDown() {
         MockVaadin.tearDown();
+    }
+
+    @AfterEach
+    public void performLogout() {
+        logout();
     }
 }
