@@ -5,12 +5,14 @@ import com.vaadin.flow.component.UI;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static com.github.mvysny.kaributesting.v10.LocatorJ._assertOne;
 
 public class HelloWorldViewTest extends AbstractAppTest {
     @BeforeEach
     public void login() {
-        login("user", "user");
+        login("user", "user", Arrays.asList("user"));
     }
 
     @Test

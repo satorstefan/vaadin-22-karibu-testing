@@ -14,13 +14,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.TestingAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -34,18 +39,17 @@ public abstract class AbstractAppTest {
     }
 
     @Autowired
-    private ApplicationContext ctx;
-    @Autowired
-    private AuthenticationManager authManager;
+    protected ApplicationContext ctx;
 
-    protected void login(String user, String pass) {
+    protected void login(String user, String pass, List<String> groups) {
         // taken from https://www.baeldung.com/manually-set-user-authentication-spring-security
         // also see https://github.com/mvysny/karibu-testing/issues/47 for more details.
+        final List<SimpleGrantedAuthority> authorities =
+                groups.stream().map(it -> new SimpleGrantedAuthority("ROLE_" + it)).collect(Collectors.toList());
         UsernamePasswordAuthenticationToken authReq
-                = new UsernamePasswordAuthenticationToken(user, pass);
-        Authentication auth = authManager.authenticate(authReq);
+                = new UsernamePasswordAuthenticationToken(user, pass, authorities);
         SecurityContext sc = SecurityContextHolder.getContext();
-        sc.setAuthentication(auth);
+        sc.setAuthentication(authReq);
     }
 
     protected void logout() {
