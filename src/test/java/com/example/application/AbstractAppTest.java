@@ -41,11 +41,11 @@ public abstract class AbstractAppTest {
     @Autowired
     protected ApplicationContext ctx;
 
-    protected void login(String user, String pass, List<String> groups) {
+    protected void login(String user, String pass, List<String> roles) {
         // taken from https://www.baeldung.com/manually-set-user-authentication-spring-security
         // also see https://github.com/mvysny/karibu-testing/issues/47 for more details.
         final List<SimpleGrantedAuthority> authorities =
-                groups.stream().map(it -> new SimpleGrantedAuthority("ROLE_" + it)).collect(Collectors.toList());
+                roles.stream().map(it -> new SimpleGrantedAuthority("ROLE_" + it)).collect(Collectors.toList());
         UsernamePasswordAuthenticationToken authReq
                 = new UsernamePasswordAuthenticationToken(user, pass, authorities);
         SecurityContext sc = SecurityContextHolder.getContext();
