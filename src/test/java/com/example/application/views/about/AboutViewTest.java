@@ -29,6 +29,8 @@ class AboutViewTest extends AbstractAppTest {
         final NotFoundException ex = assertThrows(NotFoundException.class, () -> {
             UI.getCurrent().navigate(AboutView.class);
         });
-        assertTrue(ex.getMessage().contains("No route found for 'about': Access denied"), ex.getMessage());
+        // in production mode, the `Access denied` is ommitted
+//        assertTrue(ex.getMessage().contains("No route found for 'about': Access denied"), ex.getMessage());
+        assertTrue(ex.getMessage().contains("No route found for 'about'"), ex.getMessage());
     }
 }
