@@ -26,9 +26,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@ExtendWith(SpringExtension.class)
 @SpringBootTest
-@WebAppConfiguration
 @DirtiesContext
 public abstract class AbstractAppTest {
     private static Routes routes;
