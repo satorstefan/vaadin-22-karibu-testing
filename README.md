@@ -7,6 +7,9 @@ test java classes for more details.
 Also see [Issue #47](https://github.com/mvysny/karibu-testing/issues/47)
 for more details.
 
+See the `AbstractAppTest.java` class and the rest of the test classes, to see how
+exactly the app needs to be tested.
+
 ## Running the application
 
 The project is a standard Maven project. To run it from the command line,
