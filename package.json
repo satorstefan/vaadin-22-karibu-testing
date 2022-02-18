@@ -410,6 +410,10 @@
     "@vaadin/common-frontend": "$@vaadin/common-frontend",
     "construct-style-sheets-polyfill": "$construct-style-sheets-polyfill",
     "lit": "$lit",
-    "@polymer/polymer": "$@polymer/polymer"
+    "@polymer/polymer": "$@polymer/polymer",
+    "@vaadin/vaadin-core-shrinkwrap": "$@vaadin/vaadin-core-shrinkwrap",
+    "@vaadin/vaadin-shrinkwrap": "$@vaadin/vaadin-shrinkwrap",
+    "date-fns": "$date-fns",
+    "line-awesome": "$line-awesome"
   }
 }
