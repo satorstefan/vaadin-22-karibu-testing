@@ -24,11 +24,15 @@ public class HelloWorldViewTest extends AbstractAppTest {
         _assertOne(HelloWorldView.class);
     }
 
+    /**
+     * See {@link AbstractAppTest.MyTestConfiguration} which configures a
+     * different implementation for {@link HelloService}.
+     */
     @Test
-    public void sayHello() {
+    public void sayHelloWithMockBean() {
         UI.getCurrent().navigate(HelloWorldView.class);
         _setValue(_get(TextField.class, spec -> spec.withCaption("Your name")), "Martin");
         _click(_get(Button.class, spec -> spec.withCaption("Say hello")));
-        NotificationsKt.expectNotifications("Hello, Martin");
+        NotificationsKt.expectNotifications("Goodbye, Martin");
     }
 }

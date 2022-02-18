@@ -10,6 +10,13 @@ for more details.
 See the `AbstractAppTest.java` class and the rest of the test classes, to see how
 exactly the app needs to be tested.
 
+Demoes:
+
+- A way to programmatically log in to your app, so that Karibu-Testing can navigate
+  to your protected views. See the `AbstractAppTest` class for details.
+- Demoes fake/test implementations for services. See the `AbstractAppTest.MyTestConfiguration`
+  class for details.
+
 ## Running the application
 
 The project is a standard Maven project. To run it from the command line,

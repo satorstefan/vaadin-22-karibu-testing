@@ -1,5 +1,7 @@
 package com.example.application;
 
+import com.example.application.views.helloworld.GoodbyeService;
+import com.example.application.views.helloworld.HelloService;
 import com.github.mvysny.kaributesting.mockhttp.MockRequest;
 import com.github.mvysny.kaributesting.v10.MockVaadin;
 import com.github.mvysny.kaributesting.v10.Routes;
@@ -14,7 +16,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
@@ -38,12 +44,9 @@ import java.util.stream.Collectors;
  */
 @SpringBootTest
 @DirtiesContext
+@Import(AbstractAppTest.MyTestConfiguration.class)
 public abstract class AbstractAppTest {
-    private static Routes routes;
-    @BeforeAll
-    public static void discoverRoutes() {
-        routes = new Routes().autoDiscoverViews("com.example.application");
-    }
+    private static final Routes routes = new Routes().autoDiscoverViews("com.example.application");
 
     @Autowired
     protected ApplicationContext ctx;
@@ -89,5 +92,17 @@ public abstract class AbstractAppTest {
     @AfterEach
     public void performLogout() {
         logout();
+    }
+
+    /**
+     * Provides different (testing) implementations for certain Spring beans.
+     */
+    @TestConfiguration
+    public static class MyTestConfiguration {
+        @Bean
+        @Primary
+        public HelloService getHelloService(GoodbyeService goodbyeService) {
+            return goodbyeService;
+        }
     }
 }
