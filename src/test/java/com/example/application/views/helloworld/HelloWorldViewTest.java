@@ -1,13 +1,16 @@
 package com.example.application.views.helloworld;
 
 import com.example.application.AbstractAppTest;
+import com.github.mvysny.kaributesting.v10.NotificationsKt;
 import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.textfield.TextField;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static com.github.mvysny.kaributesting.v10.LocatorJ._assertOne;
+import static com.github.mvysny.kaributesting.v10.LocatorJ.*;
 
 public class HelloWorldViewTest extends AbstractAppTest {
     @BeforeEach
@@ -19,5 +22,13 @@ public class HelloWorldViewTest extends AbstractAppTest {
     public void smokeTest() {
         UI.getCurrent().navigate(HelloWorldView.class);
         _assertOne(HelloWorldView.class);
+    }
+
+    @Test
+    public void sayHello() {
+        UI.getCurrent().navigate(HelloWorldView.class);
+        _setValue(_get(TextField.class, spec -> spec.withCaption("Your name")), "Martin");
+        _click(_get(Button.class, spec -> spec.withCaption("Say hello")));
+        NotificationsKt.expectNotifications("Hello, Martin");
     }
 }
