@@ -8,6 +8,8 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.annotation.security.PermitAll;
 
 @PageTitle("Hello World")
@@ -16,14 +18,16 @@ import javax.annotation.security.PermitAll;
 @PermitAll
 public class HelloWorldView extends HorizontalLayout {
 
-    private TextField name;
-    private Button sayHello;
+    @Autowired
+    private HelloService helloService;
+
+    private final TextField name;
 
     public HelloWorldView() {
         name = new TextField("Your name");
-        sayHello = new Button("Say hello");
+        Button sayHello = new Button("Say hello");
         sayHello.addClickListener(e -> {
-            Notification.show("Hello " + name.getValue());
+            Notification.show(helloService.sayHello(name.getValue()));
         });
 
         setMargin(true);
@@ -31,5 +35,4 @@ public class HelloWorldView extends HorizontalLayout {
 
         add(name, sayHello);
     }
-
 }

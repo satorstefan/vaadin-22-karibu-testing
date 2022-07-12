@@ -1,16 +1,16 @@
 package com.example.application.data;
 
-import com.vaadin.fusion.Nonnull;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotNull;
 
 @MappedSuperclass
 public abstract class AbstractEntity {
 
     @Id
     @GeneratedValue
-    @Nonnull
+    @NotNull
     private Integer id;
 
     public Integer getId() {
