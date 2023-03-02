@@ -1,7 +1,21 @@
-# My App
+# Spring Security + Karibu Testing demo
 
-This project can be used as a starting point to create your own Vaadin application with Spring Boot.
-It contains all the necessary configuration and some placeholder files to get you started.
+This project demoes the possibility of testing a Spring Security-based app
+with [Karibu Testing](https://github.com/mvysny/karibu-testing). See the
+test java classes for more details.
+
+Also see [Issue #47](https://github.com/mvysny/karibu-testing/issues/47)
+for more details.
+
+See the `AbstractAppTest.java` class and the rest of the test classes, to see how
+exactly the app needs to be tested.
+
+Demoes:
+
+- A way to programmatically log in to your app, so that Karibu-Testing can navigate
+  to your protected views. See the `AbstractAppTest` class for details.
+- Demoes fake/test implementations for services. See the `AbstractAppTest.MyTestConfiguration`
+  class for details.
 
 ## Running the application
 
